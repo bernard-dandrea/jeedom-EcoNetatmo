@@ -30,8 +30,8 @@ Une fois le plugin installé, il faut l'activer et renseigner vos informations d
 
 ![configuration](../images/configuration.png)
 
--   **Client ID** : votre client ID (voir partie configuration)
--   **Client secret** : votre client secret (voir partie configuration)
+-   **Client ID** : votre client ID (voir ci-dessus)
+-   **Client secret** : votre client secret (voir ci-dessus)
 -   **Nom d’utilisateur** : nom d’utilisateur de votre compte netatmo
 -   **Mot de passe** : mot de passe de votre compte Netatmo
 
