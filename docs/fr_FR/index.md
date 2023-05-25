@@ -1,10 +1,10 @@
 # Plugin EcoNetatmo
 
-Plugin permettant de récupérer les consommations venant des Ecocompteurs Legrand type Drivia with NetAtmo (ref 41203x).
+Plugin permettant de récupérer les consommations venant des Ecocompteurs Legrand type Drivia with Netatmo (ref 41203x).
 
 Ce plugin a été développé sur la base du plugin standard netatmoWeather.
 
-Ce plugin utilise les API fournis par Netatmo ( voir le lien suivant <https://dev.netatmo.com/apidocumentation/control> ). 
+Ce plugin utilise les APIs fournise par Netatmo ( voir le lien suivant <https://dev.netatmo.com/apidocumentation/control> ). 
 
 # Récupération des informations de connexion
 
@@ -18,7 +18,7 @@ Une fois identifié, aller sur le menu des applications ( <https://dev.netatmo.c
 
 ![app](../images/app.png)
 
-Remplissez le formulaire et cliquer sur 'Save'.
+Remplir le formulaire et cliquer sur 'Save'.
 
 ![secret](../images/secret.png)
 
