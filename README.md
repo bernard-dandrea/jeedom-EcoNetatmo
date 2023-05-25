@@ -1,2 +1,2 @@
 # jeedom-EcoNetatmo
-Jeedom Plugin to collect consumption data coming from Legrand ecocompteur of Drivia with Netatmo series (reference 41203x).
+Plugin permettant de récupérer les consommations des écocompteurs Legrand de la série Drivia with Netatmo référence 41203x
