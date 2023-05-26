@@ -18,10 +18,10 @@
 	"hasDependency" : false,
 	"hasOwnDeamon" : false,
 	"maxDependancyInstallTime" : 0,
-	"changelog" : "https://jeedom.github.io/jeedom-EcoNetatmo/#language#/changelog",
-	"documentation" : "https://jeedom.github.io/jeedom-EcoNetatmo/#language#/",
-	"changelog_beta" : "https://jeedom.github.io/jeedom-EcoNetatmo/#language#/beta/changelog",
-	"documentation_beta" : "https://jeedom.github.io/jeedom-EcoNetatmo/#language#/beta/",
+	"changelog" : "https://bernard-dandrea.github.io/jeedom-EcoNetatmo/#language#/changelog",
+	"documentation" : "https://bernard-dandrea.github.io/jeedom-EcoNetatmo/#language#/",
+	"changelog_beta" : "https://bernard-dandrea.github.io/jeedom-EcoNetatmo/#language#/beta/changelog",
+	"documentation_beta" : "https://bernard-dandrea.github.io/jeedom-EcoNetatmo/#language#/beta/",
 	"link" : {
 	},
 	"language": [
