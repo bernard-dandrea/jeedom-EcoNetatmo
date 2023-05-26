@@ -24,13 +24,6 @@ $eqLogics = eqLogic::byType($plugin->getId());
         <br>
         <span>{{Configuration}}</span>
       </div>
-      <form action="https://www.paypal.com/donate" method="post" target="_top">
-        <input type="hidden" name="business" value="FW6UHZEVE8984" />
-        <input type="hidden" name="no_recurring" value="1" />
-        <input type="hidden" name="item_name" value="{{Encourager le développeur}}" />
-        <input type="hidden" name="currency_code" value="EUR" />
-        <input type="image" src="plugins/EcoNetatmo/plugin_info/images/beer.png" style="width:60px" border="0" name="submit" title="{{Encourager le développeur}}" alt="{{Encourager le développeur}}" />
-      </form>
     </div>
     <legend><i class="fas fa-table"></i> {{Mes Ecocompteurs}}</legend>
     <?php
