@@ -33,10 +33,7 @@ class EcoNetatmo extends eqLogic
 
     public static function getClient()
     {
-
-        log::add('EcoNetatmo', 'debug', 'getClient enter');
         if (self::$_client == null) {
-            log::add('EcoNetatmo', 'debug', 'getClient request new client');
             self::$_client = new netatmoApi(
                 array(
                     'client_id' => config::byKey('client_id', 'EcoNetatmo'),
