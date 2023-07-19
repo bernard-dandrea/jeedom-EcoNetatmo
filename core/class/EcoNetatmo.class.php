@@ -33,18 +33,34 @@ class EcoNetatmo extends eqLogic
 
     public static function getClient()
     {
+
+        log::add('EcoNetatmo', 'debug', 'getClient enter');
         if (self::$_client == null) {
-            self::$_client = new netatmoApi(array(
-                'client_id' => config::byKey('client_id', 'EcoNetatmo'),
-                'client_secret' => config::byKey('client_secret', 'EcoNetatmo'),
-                'username' => config::byKey('username', 'EcoNetatmo'),
-                'password' => config::byKey('password', 'EcoNetatmo'),
-                'scope' => 'read_magellan',
-            ));
+            log::add('EcoNetatmo', 'debug', 'getClient request new client');
+            self::$_client = new netatmoApi(
+                array(
+                    'client_id' => config::byKey('client_id', 'EcoNetatmo'),
+                    'client_secret' => config::byKey('client_secret', 'EcoNetatmo'),
+                    //             'username' => config::byKey('username', 'EcoNetatmo'),
+                    //             'password' => config::byKey('password', 'EcoNetatmo'),
+                    'access_token' => config::byKey('access_token', 'EcoNetatmo'),
+                    'refresh_token' => config::byKey('refresh_token', 'EcoNetatmo'),
+                    'object_cb' => 'EcoNetatmo',
+                    'func_cb' => 'saveTokens',
+                    'scope' => 'read_magellan'
+                )
+            );
         }
         return self::$_client;
     }
-
+  
+    function saveTokens($p_token)
+    {
+        foreach ($p_token as $key => $value) {
+            log::add('EcoNetatmo', 'debug', __('saveTokens ', __FILE__) . $key . ' -> ' . $value);
+            config::save($key, $value, 'EcoNetatmo');
+        }
+    }
 
     public static function createEquipmentsAndCommands()
     {
