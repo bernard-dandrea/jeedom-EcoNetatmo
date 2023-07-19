@@ -24,7 +24,6 @@ if (!isConnect()) {
 ?>
 
 
-
 <form class="form-horizontal">
   <fieldset>
 
@@ -45,7 +44,7 @@ if (!isConnect()) {
       <div class="form-group">
         <label class="col-sm-4 control-label" for="username">{{Nom d'utilisateur}}</label>
         <div class="col-sm-3">
-          <input type="text" class="configKey form-control" data-l1key="username" id="username" placeholder="email@example.com" autocomplete="email">
+          <input type="text" class="configKey form-control" data-l1key="username" id="username" placeholder="" autocomplete="off">
         </div>
       </div>
       <div class="form-group">
@@ -54,6 +53,19 @@ if (!isConnect()) {
           <input type="password" class="configKey form-control" id="password" data-l1key="password" autocomplete="off">
         </div>
       </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="access_token">{{Access token}}</label>
+        <div class="col-sm-3">
+          <input type="text" class="configKey form-control" data-l1key="access_token" id="access_token" placeholder="" autocomplete="off">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="refresh_token">{{Refresh token}}</label>
+        <div class="col-sm-3">
+          <input type="text" class="configKey form-control" data-l1key="refresh_token" id="refresh_token" placeholder="" autocomplete="off">
+        </div>
+      </div>
+
 
 
     </div>
