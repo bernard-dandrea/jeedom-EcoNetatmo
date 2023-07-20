@@ -153,8 +153,9 @@ class netatmoApi {
     }
     throw new Exception("No access token stored");
   }
-  
-  private function getAccessTokenFromRefreshToken(){
+
+  // BD: changed fromp provate to public as it is needed to force the refresh externally
+  public function getAccessTokenFromRefreshToken(){
     if ($this->getVariable('access_token_uri') && ($client_id = $this->getVariable('client_id')) != NULL && ($client_secret = $this->getVariable('client_secret')) != NULL && ($refresh_token = $this->refresh_token) != NULL){
       if($this->getVariable('scope') != null){
         $ret = $this->makeRequest($this->getVariable('access_token_uri'),'POST',array(
