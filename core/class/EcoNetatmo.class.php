@@ -83,7 +83,7 @@ class EcoNetatmo extends eqLogic
         // (ce qui est normalement bien géré avec getAccessTokenFromRefreshToken)
         // aussi, on fait un refresh du token toutes les heures pour être sur qu'ile st toujours valide
         log::add('EcoNetatmo', 'info', 'Refresh token');
-        // dans netatmoApi.class.php, retirer le private devant la fonction getAccessTokenFromRefreshToken
+        // dans netatmoApi.class.php, remplacer le private par public devant la fonction getAccessTokenFromRefreshToken
         self::getClient()->getAccessTokenFromRefreshToken();
         EcoNetatmo::cron_update(__FUNCTION__);
     }
