@@ -6,7 +6,7 @@
 
 # 20/07/2023
 
-- modification pour gérer l'authentification via authorization_code (voir documentation) 
+- Modification pour gérer l'authentification via authorization_code (voir documentation) 
 
 # 26/05/2023
 
