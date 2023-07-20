@@ -53,8 +53,9 @@ try {
         if (!is_object($eqLogic)) {
             throw new \Exception(__('EcoNetatmo eqLogic non trouvé : ', __FILE__) . init('id'));
         }
-
-        $EcoNetatmo  = $eqLogic->counters_import();
+        $consumption_type = init('consumption_type');
+        $source_type = init('source_type');
+        $EcoNetatmo  = $eqLogic->counters_import(consumption_type,source_type);
         ajax::success($EcoNetatmo);
     }
     
