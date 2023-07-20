@@ -1,10 +1,10 @@
 # Plugin EcoNetatmo
 
-Plugin permettant de récupérer les consommations venant des Ecocompteurs Legrand type Drivia with Netatmo (ref 41203x).
+Plugin permettant de récupérer les consommations venant des Ecocompteurs Legrand type Drivia with NetAtmo (ref 41203x).
 
 Ce plugin a été développé sur la base du plugin standard netatmoWeather.
 
-Ce plugin utilise les APIs fournise par Netatmo ( voir le lien suivant <https://dev.netatmo.com/apidocumentation/control> ). 
+Ce plugin utilise les API fournis par Netatmo ( voir le lien suivant <https://dev.netatmo.com/apidocumentation/control> ). 
 
 # Récupération des informations de connexion
 
@@ -18,11 +18,26 @@ Une fois identifié, aller sur le menu des applications ( <https://dev.netatmo.c
 
 ![app](../images/app.png)
 
-Remplir le formulaire et cliquer sur 'Save'.
+Remplissez le formulaire et cliquer sur 'Save'.
 
 ![secret](../images/secret.png)
 
 Le 'client ID' et le 'client secret' sont générés. Vous pouvez les utiliser pour configurer le plugin.
+
+
+# Récupération des tokens
+
+Les tokens permettent l'accès à vos données sur les serveurs Netatmo (voir la norme d'autorisation oauth2).
+
+On peut les générer directement sur la page de l'application.
+
+![generate_token](../images/generate_token.png)
+
+Sélectionnez le scope 'read_magellan' et cliquer sur 'Generate Token'.
+
+![tokens](../images/tokens.png)
+
+Après avoir autorisé l'accès à vos données, les tokens sont générés.
 
 # Configuration du plugin
 
@@ -30,10 +45,12 @@ Une fois le plugin installé, il faut l'activer et renseigner vos informations d
 
 ![configuration](../images/configuration.png)
 
--   **Client ID** : votre client ID (voir ci-dessus)
--   **Client secret** : votre client secret (voir ci-dessus)
--   **Nom d’utilisateur** : nom d’utilisateur de votre compte netatmo
--   **Mot de passe** : mot de passe de votre compte Netatmo
+-   **Client ID** : votre client ID (voir partie configuration)
+-   **Client secret** : votre client secret (voir partie configuration)
+-   **Access token** : token permettant l'accès à vos données sur les serveurs Netatmo
+-   **Refresh token** : token permettant de rafraichir l'access token
+
+La gestion des tokens est effectuée par le plugin. Dans le cas où ceux-ci deviendraient invalides (voir les logs) après une longue période d'inactivité par exemple, il faudrait en générer de nouveaux et mettre à jour la configuration du plugin avec les nouveaux tokens.
 
 ![log](../images/log.png)
 
