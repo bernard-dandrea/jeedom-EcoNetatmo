@@ -31,37 +31,25 @@ if (!isConnect()) {
 
       <div class="form-group">
         <label class="col-sm-4 control-label" for="client_id"> {{Client ID}}</label>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <input type="text" class="configKey form-control" data-l1key="client_id" id="client_id" placeholder="" autocomplete="off">
         </div>
       </div>
       <div class="form-group">
         <label class="col-sm-4  control-label" for="client_secret">{{Client secret}}</label>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <input type="password" class="configKey form-control" data-l1key="client_secret" id="client_secret" placeholder="" autocomplete="off">
         </div>
       </div>
       <div class="form-group">
-        <label class="col-sm-4 control-label" for="username">{{Nom d'utilisateur}}</label>
-        <div class="col-sm-3">
-          <input type="text" class="configKey form-control" data-l1key="username" id="username" placeholder="" autocomplete="off">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-sm-4 control-label" for="password">{{Mot de passe}}</label>
-        <div class="col-sm-3">
-          <input type="password" class="configKey form-control" id="password" data-l1key="password" autocomplete="off">
-        </div>
-      </div>
-      <div class="form-group">
         <label class="col-sm-4 control-label" for="access_token">{{Access token}}</label>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <input type="text" class="configKey form-control" data-l1key="access_token" id="access_token" placeholder="" autocomplete="off">
         </div>
       </div>
       <div class="form-group">
         <label class="col-sm-4 control-label" for="refresh_token">{{Refresh token}}</label>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <input type="text" class="configKey form-control" data-l1key="refresh_token" id="refresh_token" placeholder="" autocomplete="off">
         </div>
       </div>
