@@ -133,15 +133,6 @@ function addCmdToTable(_cmd) {
 
 
 function printEqLogic(_eqLogic) {
-    if (_eqLogic.configuration.type == 'EcoNetatmo') {
-        $('.carte_only').show();
-        $('.nocarte_only').hide();
-
-    }
-    else {
-        $('.carte_only').hide();
-        $('.nocarte_only').show();
-    }
     $EcoNetatmotype = _eqLogic.configuration.type;
 }
 
@@ -189,6 +180,8 @@ $('#bt_counters_import').on('click', function () {
         data: {
             action: "counters_import",
             id: $('.eqLogicAttr[data-l1key=id]').value(),
+            consumption_type: $('.eqLogicAttr[data-l1key=consumption_type]').value(),
+            source_type: $('.eqLogicAttr[data-l1key=source_type]').value(),
         },
         dataType: 'json',
         error: function (request, status, error) {
