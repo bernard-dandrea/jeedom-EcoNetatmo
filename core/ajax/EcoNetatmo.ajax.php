@@ -58,38 +58,6 @@ try {
         ajax::success($EcoNetatmo);
     }
     
-    if (init('action') == 'devices_import') {
-        $eqLogic = EcoNetatmo::byId(init('id'));
-        if (!is_object($eqLogic)) {
-            throw new \Exception(__('EcoNetatmo eqLogic non trouvé : ', __FILE__) . init('id'));
-        }
-
-        $EcoNetatmo = $eqLogic->devices_import();
-        ajax::success($EcoNetatmo);
-    }
-
-    if (init('action') == 'counters_import') {
-
-        $eqLogic = EcoNetatmo::byId(init('id'));
-        if (!is_object($eqLogic)) {
-            throw new \Exception(__('EcoNetatmo eqLogic non trouvé : ', __FILE__) . init('id'));
-        }
-
-        $EcoNetatmo  = $eqLogic->counters_import();
-        ajax::success($EcoNetatmo);
-    }
-
-    if (init('action') == 'MenuImport') {
-
-        $eqLogic = EcoNetatmo::byId(init('id'));
-        if (!is_object($eqLogic)) {
-            throw new \Exception(__('EcoNetatmo eqLogic non trouvé : ', __FILE__) . init('id'));
-        }
-
-        $idmenu = init('idmenu');
-        $EcoNetatmo = $eqLogic->MenuImport($idmenu);
-        ajax::success($EcoNetatmo);
-    }
 
     if (init('action') == 'create_command') {
 
