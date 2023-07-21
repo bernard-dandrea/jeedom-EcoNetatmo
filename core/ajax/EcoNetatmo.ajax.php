@@ -55,23 +55,7 @@ try {
         }
         $consumption_type = init('consumption_type');
         $source_type = init('source_type');
-        $EcoNetatmo  = $eqLogic->counters_import(consumption_type,source_type);
-        ajax::success($EcoNetatmo);
-    }
-    
-
-    if (init('action') == 'create_command') {
-
-        $eqLogic = EcoNetatmo::byId(init('id'));
-        if (!is_object($eqLogic)) {
-            throw new \Exception(__('EcoNetatmo eqLogic non trouvé : ', __FILE__) . init('id'));
-        }
-
-        $id_commande = init('id_commande');
-        $_info = init('_info');
-        $_action = init('_action');
-        $_refresh = init('_refresh');
-        $EcoNetatmo = $eqLogic->create_command($id_commande, $_info, $_action, $_refresh);
+        $EcoNetatmo  = $eqLogic->counters_import($consumption_type,$source_type);
         ajax::success($EcoNetatmo);
     }
 
