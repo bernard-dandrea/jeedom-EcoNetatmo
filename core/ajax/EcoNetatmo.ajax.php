@@ -53,56 +53,9 @@ try {
         if (!is_object($eqLogic)) {
             throw new \Exception(__('EcoNetatmo eqLogic non trouvé : ', __FILE__) . init('id'));
         }
-
-        $EcoNetatmo  = $eqLogic->counters_import();
-        ajax::success($EcoNetatmo);
-    }
-    
-    if (init('action') == 'devices_import') {
-        $eqLogic = EcoNetatmo::byId(init('id'));
-        if (!is_object($eqLogic)) {
-            throw new \Exception(__('EcoNetatmo eqLogic non trouvé : ', __FILE__) . init('id'));
-        }
-
-        $EcoNetatmo = $eqLogic->devices_import();
-        ajax::success($EcoNetatmo);
-    }
-
-    if (init('action') == 'counters_import') {
-
-        $eqLogic = EcoNetatmo::byId(init('id'));
-        if (!is_object($eqLogic)) {
-            throw new \Exception(__('EcoNetatmo eqLogic non trouvé : ', __FILE__) . init('id'));
-        }
-
-        $EcoNetatmo  = $eqLogic->counters_import();
-        ajax::success($EcoNetatmo);
-    }
-
-    if (init('action') == 'MenuImport') {
-
-        $eqLogic = EcoNetatmo::byId(init('id'));
-        if (!is_object($eqLogic)) {
-            throw new \Exception(__('EcoNetatmo eqLogic non trouvé : ', __FILE__) . init('id'));
-        }
-
-        $idmenu = init('idmenu');
-        $EcoNetatmo = $eqLogic->MenuImport($idmenu);
-        ajax::success($EcoNetatmo);
-    }
-
-    if (init('action') == 'create_command') {
-
-        $eqLogic = EcoNetatmo::byId(init('id'));
-        if (!is_object($eqLogic)) {
-            throw new \Exception(__('EcoNetatmo eqLogic non trouvé : ', __FILE__) . init('id'));
-        }
-
-        $id_commande = init('id_commande');
-        $_info = init('_info');
-        $_action = init('_action');
-        $_refresh = init('_refresh');
-        $EcoNetatmo = $eqLogic->create_command($id_commande, $_info, $_action, $_refresh);
+        $consumption_type = init('consumption_type');
+        $source_type = init('source_type');
+        $EcoNetatmo  = $eqLogic->counters_import($consumption_type,$source_type);
         ajax::success($EcoNetatmo);
     }
 

@@ -30,20 +30,63 @@ class EcoNetatmo extends eqLogic
 
     private static $_client = null;
 
-
     public static function getClient()
     {
+
         if (self::$_client == null) {
-            self::$_client = new netatmoApi(array(
-                'client_id' => config::byKey('client_id', 'EcoNetatmo'),
-                'client_secret' => config::byKey('client_secret', 'EcoNetatmo'),
-                'username' => config::byKey('username', 'EcoNetatmo'),
-                'password' => config::byKey('password', 'EcoNetatmo'),
-                'scope' => 'read_magellan',
-            ));
+            $code = config::byKey('code', 'EcoNetatmo');
+            if ($code == '') {
+                self::$_client = new netatmoApi(
+                    array(
+                        'client_id' => config::byKey('client_id', 'EcoNetatmo'),
+                        'client_secret' => config::byKey('client_secret', 'EcoNetatmo'),
+                        //             'username' => config::byKey('username', 'EcoNetatmo'),
+                        //             'password' => config::byKey('password', 'EcoNetatmo'),
+                        'access_token' => config::byKey('access_token', 'EcoNetatmo'),
+                        'refresh_token' => config::byKey('refresh_token', 'EcoNetatmo'),
+                        'object_cb' => 'EcoNetatmo',
+                        'func_cb' => 'saveTokens',
+                        'scope' => 'read_magellan'
+                    )
+                );
+            } else {
+                self::$_client = new netatmoApi(
+                    array(
+                        'client_id' => config::byKey('client_id', 'EcoNetatmo'),
+                        'client_secret' => config::byKey('client_secret', 'EcoNetatmo'),
+                        'grant_type' => 'authorization_code',
+                        //             'username' => config::byKey('username', 'EcoNetatmo'),
+                        //             'password' => config::byKey('password', 'EcoNetatmo'),
+                        'code' => $code,
+                        'redirect_uri' => 'https://97cef5b2.eu.jeedom.link/Netatmo_connect.php',
+                        'object_cb' => 'EcoNetatmo',
+                        'func_cb' => 'saveTokens',
+                        'scope' => 'read_magellan'
+                    )
+                );
+            }
         }
         return self::$_client;
     }
+    function saveTokens($p_token)
+    {
+        foreach ($p_token as $key => $value) {
+            log::add('EcoNetatmo', 'debug', __('saveTokens ', __FILE__) . $key . ' -> ' . $value);
+            config::save($key, $value, 'EcoNetatmo');
+        }
+    }
+
+    public function cronHourly()
+    {
+        // avec Netatmo, une fois que le token est expiré, on ne peut plus faire de refresh
+        // (ce qui est normalement bien géré avec getAccessTokenFromRefreshToken)
+        // aussi, on fait un refresh du token toutes les heures pour être sur qu'ile st toujours valide
+        log::add('EcoNetatmo', 'info', 'Refresh token');
+        // dans netatmoApi.class.php, remplacer le private par public devant la fonction getAccessTokenFromRefreshToken
+        self::getClient()->getAccessTokenFromRefreshToken();
+        EcoNetatmo::cron_update(__FUNCTION__);
+    }
+
 
 
     public static function createEquipmentsAndCommands()
@@ -115,7 +158,7 @@ class EcoNetatmo extends eqLogic
     public function Counters_Import($_consumption_type, $_source_type)
     {
 
-        log::add('EcoNetatmo', 'debug', __('Counters_Import ', __FILE__) . $this->name);
+        log::add('EcoNetatmo', 'debug', __('Counters_Import ', __FILE__) . $this->name . '  _consumption_type ' . $_consumption_type . ' _source_type '. $_source_type);
 
         switch ($_consumption_type) {
             case ('electrical'):

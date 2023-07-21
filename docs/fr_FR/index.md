@@ -24,6 +24,21 @@ Remplissez le formulaire et cliquer sur 'Save'.
 
 Le 'client ID' et le 'client secret' sont générés. Vous pouvez les utiliser pour configurer le plugin.
 
+
+# Récupération des tokens
+
+Les tokens permettent l'accès à vos données sur les serveurs Netatmo (voir la norme d'autorisation oauth2).
+
+On peut les générer directement sur la page de l'application.
+
+![generate_token](../images/generate_token.png)
+
+Sélectionnez le scope 'read_magellan' et cliquer sur 'Generate Token'.
+
+![tokens](../images/tokens.png)
+
+Après avoir autorisé l'accès à vos données, les tokens sont générés.
+
 # Configuration du plugin
 
 Une fois le plugin installé, il faut l'activer et renseigner vos informations de connexion Netatmo :
@@ -32,8 +47,10 @@ Une fois le plugin installé, il faut l'activer et renseigner vos informations d
 
 -   **Client ID** : votre client ID (voir partie configuration)
 -   **Client secret** : votre client secret (voir partie configuration)
--   **Nom d’utilisateur** : nom d’utilisateur de votre compte netatmo
--   **Mot de passe** : mot de passe de votre compte Netatmo
+-   **Access token** : token permettant l'accès à vos données sur les serveurs Netatmo
+-   **Refresh token** : token permettant de rafraichir l'access token
+
+La gestion des tokens est effectuée par le plugin. Dans le cas où ceux-ci deviendraient invalides (voir les logs) après une longue période d'inactivité par exemple, il faudrait en générer de nouveaux et mettre à jour la configuration du plugin avec les nouveaux tokens.
 
 ![log](../images/log.png)
 
