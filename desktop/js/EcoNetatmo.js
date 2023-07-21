@@ -131,13 +131,9 @@ function addCmdToTable(_cmd) {
     })
 }
 
-
 function printEqLogic(_eqLogic) {
     $EcoNetatmotype = _eqLogic.configuration.type;
 }
-
-
-
 
 $('.npd_btn_sync').on('click', function (e) {
     e.preventDefault()
@@ -145,7 +141,7 @@ $('.npd_btn_sync').on('click', function (e) {
     $.ajax({
         type: "POST",
         url: "plugins/EcoNetatmo/core/ajax/EcoNetatmo.ajax.php", // url du fichier php
-        // LA FONCTION devices_import DOIT ETRE DEFINIE DANS LE FICHIER CI-DESSUS
+        // LA FONCTION createEquipmentsAndCommands DOIT ETRE DEFINIE DANS LE FICHIER CI-DESSUS
         data: {
             action: "createEquipmentsAndCommands",
         },
@@ -167,8 +163,6 @@ $('.npd_btn_sync').on('click', function (e) {
     })
 })
 
-
-
 $("#table_cmd").sortable({ axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true });
 
 $('#bt_counters_import').on('click', function () {
@@ -176,12 +170,12 @@ $('#bt_counters_import').on('click', function () {
     $.ajax({// fonction permettant de faire de l'ajax
         type: "POST", // methode de transmission des données au fichier php
         url: "plugins/EcoNetatmo/core/ajax/EcoNetatmo.ajax.php", // url du fichier php
-        // LA FONCTION devices_import DOIT ETRE DEFINIE DANS LE FICHIER CI-DESSUS
+        // LA FONCTION counters_import DOIT ETRE DEFINIE DANS LE FICHIER CI-DESSUS
         data: {
             action: "counters_import",
             id: $('.eqLogicAttr[data-l1key=id]').value(),
-            consumption_type: $('.eqLogicAttr[data-l1key=consumption_type]').value(),
-            source_type: $('.eqLogicAttr[data-l1key=source_type]').value(),
+            consumption_type: $('.eqLogicAttr[data-l1key="configuration"][data-l2key="consumption_type"]').value(),
+            source_type: $('.eqLogicAttr[data-l1key="configuration"][data-l2key="source_type"]').value(),
         },
         dataType: 'json',
         error: function (request, status, error) {
@@ -197,161 +191,12 @@ $('#bt_counters_import').on('click', function () {
     });
 });
 
-$('#bt_main_commands_import').on('click', function () {
-    $.ajax({// fonction permettant de faire de l'ajax
-        type: "POST", // methode de transmission des données au fichier php
-        url: "plugins/EcoNetatmo/core/ajax/EcoNetatmo.ajax.php", // url du fichier php        
-        // LA FONCTION main_commands_scan DOIT ETRE DEFINIE DANS LE FICHIER CI-DESSUS
-        data: {
-            action: "main_commands_import",
-            id: $('.eqLogicAttr[data-l1key=id]').value(),
-        },
-        dataType: 'json',
-        error: function (request, status, error) {
-            handleAjaxError(request, status, $('#div_DetectBin'));
-        },
-        success: function (data) { // si l'appel a bien fonctionné
-            if (data.state != 'ok') {
-                $('#div_alert').showAlert({ message: data.result, level: 'danger' });
-                return;
-            }
-            window.location.reload();
-        }
-    });
+/* POUR TESTS */
+$('.npd_btn_token').on('click', function (e) {
+    $('#md_modal').dialog({ title: "{{Générer token}}" });
+    var ip = location.host;
+    window.open('https://api.netatmo.net/oauth2/authorize?client_id=64b0fe3a8de72c874006ccfd&scope=read_magellan&redirect_uri='+ encodeURIComponent('http://localhost/index.php?p=EcoNetatmo&m=EcoNetatmo'));
 });
 
 
-$('#bt_MenuImport').on('click', function () {
-    bootbox.prompt('{{ID du menu}}' + ' ?', function (result) {
 
-        if (result !== null && result != '') {
-
-            $.ajax({// fonction permettant de faire de l'ajax
-                type: "POST", // methode de transmission des données au fichier php
-                url: "plugins/EcoNetatmo/core/ajax/EcoNetatmo.ajax.php", // url du fichier php:
-                // LA FONCTION MenuImport DOIT ETRE DEFINIE DANS LE FICHIER CI-DESSUS
-                data: {
-                    action: "MenuImport",
-                    id: $('.eqLogicAttr[data-l1key=id]').value(),
-                    idmenu: result,
-                },
-                dataType: 'json',
-                error: function (request, status, error) {
-                    handleAjaxError(request, status, $('#div_DetectBin'));
-                },
-                success: function (data) { // si l'appel a bien fonctionné
-                    if (data.state != 'ok') {
-                        $('#div_alert').showAlert({ message: data.result, level: 'danger' });
-                        return;
-                    }
-                    window.location.reload();
-                }
-            });
-
-        }
-    });
-});
-
-
-$('#bt_create_info_command').on('click', function () {
-
-    bootbox.prompt('{{ID de la commande1}}' + ' ?', function (result) {
-
-        if (result !== null && result != '') {
-
-            $.ajax({// fonction permettant de faire de l'ajax
-                type: "POST", // methode de transmission des données au fichier php
-                url: "plugins/EcoNetatmo/core/ajax/EcoNetatmo.ajax.php", // url du fichier php
-                // LA FONCTION create_command DOIT ETRE DEFINIE DANS LE FICHIER CI-DESSUS
-                data: {
-                    action: "create_command",
-                    id: $('.eqLogicAttr[data-l1key=id]').value(),
-                    id_commande: result,
-                    _info: 'X',
-                    _action: '',
-                    _refresh: '',
-                },
-                dataType: 'json',
-                error: function (request, status, error) {
-                    handleAjaxError(request, status, $('#div_DetectBin'));
-                },
-                success: function (data) { // si l'appel a bien fonctionné
-                    if (data.state != 'ok') {
-                        $('#div_alert').showAlert({ message: data.result, level: 'danger' });
-                        return;
-                    }
-                    window.location.reload();
-                }
-            });
-        }
-    });
-});
-
-$('#bt_create_action_command').on('click', function () {
-
-    bootbox.prompt('{{ID de la commande1}}' + ' ?', function (result) {
-
-        if (result !== null && result != '') {
-
-            $.ajax({// fonction permettant de faire de l'ajax
-                type: "POST", // methode de transmission des données au fichier php
-                url: "plugins/EcoNetatmo/core/ajax/EcoNetatmo.ajax.php", // url du fichier php
-                // LA FONCTION create_command DOIT ETRE DEFINIE DANS LE FICHIER CI-DESSUS
-                data: {
-                    action: "create_command",
-                    id: $('.eqLogicAttr[data-l1key=id]').value(),
-                    id_commande: result,
-                    _info: '',
-                    _action: 'X',
-                    _refresh: '',
-                },
-                dataType: 'json',
-                error: function (request, status, error) {
-                    handleAjaxError(request, status, $('#div_DetectBin'));
-                },
-                success: function (data) { // si l'appel a bien fonctionné
-                    if (data.state != 'ok') {
-                        $('#div_alert').showAlert({ message: data.result, level: 'danger' });
-                        return;
-                    }
-                    window.location.reload();
-                }
-            });
-        }
-    });
-});
-
-
-$('#bt_create_refresh_command').on('click', function () {
-
-    bootbox.prompt('{{ID de la commande1}}' + ' ?', function (result) {
-
-        if (result !== null && result != '') {
-
-            $.ajax({// fonction permettant de faire de l'ajax
-                type: "POST", // methode de transmission des données au fichier php
-                url: "plugins/EcoNetatmo/core/ajax/EcoNetatmo.ajax.php", // url du fichier php
-                // LA FONCTION create_command DOIT ETRE DEFINIE DANS LE FICHIER CI-DESSUS
-                data: {
-                    action: "create_command",
-                    id: $('.eqLogicAttr[data-l1key=id]').value(),
-                    id_commande: result,
-                    _info: '',
-                    _action: '',
-                    _refresh: 'X',
-                },
-                dataType: 'json',
-                error: function (request, status, error) {
-                    handleAjaxError(request, status, $('#div_DetectBin'));
-                },
-                success: function (data) { // si l'appel a bien fonctionné
-                    if (data.state != 'ok') {
-                        $('#div_alert').showAlert({ message: data.result, level: 'danger' });
-                        return;
-                    }
-                    window.location.reload();
-                }
-            });
-        }
-    });
-});
