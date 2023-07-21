@@ -74,7 +74,6 @@ class EcoNetatmo extends eqLogic
             log::add('EcoNetatmo', 'debug', __('saveTokens ', __FILE__) . $key . ' -> ' . $value);
             config::save($key, $value, 'EcoNetatmo');
         }
-        config::save('code', '', 'EcoNetatmo');
     }
 
     public function cronHourly()
@@ -159,7 +158,7 @@ class EcoNetatmo extends eqLogic
     public function Counters_Import($_consumption_type, $_source_type)
     {
 
-        log::add('EcoNetatmo', 'debug', __('Counters_Import ', __FILE__) . $this->name);
+        log::add('EcoNetatmo', 'debug', __('Counters_Import ', __FILE__) . $this->name . '  _consumption_type ' . $_consumption_type . ' _source_type '. $_source_type);
 
         switch ($_consumption_type) {
             case ('electrical'):
