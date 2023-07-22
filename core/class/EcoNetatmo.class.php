@@ -40,13 +40,10 @@ class EcoNetatmo extends eqLogic
                     array(
                         'client_id' => config::byKey('client_id', 'EcoNetatmo'),
                         'client_secret' => config::byKey('client_secret', 'EcoNetatmo'),
-                        //             'username' => config::byKey('username', 'EcoNetatmo'),
-                        //             'password' => config::byKey('password', 'EcoNetatmo'),
                         'access_token' => config::byKey('access_token', 'EcoNetatmo'),
                         'refresh_token' => config::byKey('refresh_token', 'EcoNetatmo'),
                         'object_cb' => 'EcoNetatmo',
-                        'func_cb' => 'saveTokens',
-                        'scope' => 'read_magellan'
+                        'func_cb' => 'saveTokens'
                     )
                 );
             } else {
@@ -55,8 +52,6 @@ class EcoNetatmo extends eqLogic
                         'client_id' => config::byKey('client_id', 'EcoNetatmo'),
                         'client_secret' => config::byKey('client_secret', 'EcoNetatmo'),
                         'grant_type' => 'authorization_code',
-                        //             'username' => config::byKey('username', 'EcoNetatmo'),
-                        //             'password' => config::byKey('password', 'EcoNetatmo'),
                         'code' => $code,
                         'redirect_uri' => 'https://97cef5b2.eu.jeedom.link/Netatmo_connect.php',
                         'object_cb' => 'EcoNetatmo',
