@@ -18,7 +18,7 @@ Une fois identifié, aller sur le menu des applications ( <https://dev.netatmo.c
 
 ![app](../images/app.png)
 
-Remplissez le formulaire et cliquer sur 'Save'.
+Remplir le formulaire et cliquer sur 'Save'.
 
 ![secret](../images/secret.png)
 
@@ -33,7 +33,7 @@ On peut les générer directement sur la page de l'application.
 
 ![generate_token](../images/generate_token.png)
 
-Sélectionnez le scope 'read_magellan' et cliquer sur 'Generate Token'.
+Sélectionner le scope 'read_magellan' et cliquer sur 'Generate Token'.
 
 ![tokens](../images/tokens.png)
 
@@ -82,7 +82,7 @@ Vous retrouvez dans l'onglet 'Equipement' toute la configuration de votre équip
 -   **Source Type** : indique la source d'énergie de votre équipement chez Netatmo
 -   **Icone** : permet de sélectionner un type d'icône pour votre équipement dans le paneau de configuration
   
-  Le bouton 'Importer les compteurs' permet de créer les commandes correspondant à l'équipement. Ceci est fait lors de la création de l'équipement et n'est utile que si vous avez supprimé une commande.
+Le bouton 'Importer les compteurs' permet de créer les commandes correspondant à l'équipement. Ceci est fait lors de la création de l'équipement et n'est utile que si vous avez supprimé une commande.
 
   ![commandes](../images/commandes.png)
 
@@ -107,7 +107,7 @@ Voici le widget standard.
 
 >**Quelle est la fréquence de rafraîchissement ?**
 >
->Le plugin récupère les informations toutes les 10 minutes. Cependant, l'écocompoteur envoie ses relevés environ toutes les 3 heures aussi on peut observer ce décalage dans la récupération des données.
+>Le plugin récupère les informations toutes les 10 minutes. Cependant, l'écocompteur envoie ses relevés environ toutes les 3 heures aussi on peut observer ce décalage dans la récupération des données.
 
 >**Puis-je récupérer les compteurs pour le gaz et l'eau ?**
 >
