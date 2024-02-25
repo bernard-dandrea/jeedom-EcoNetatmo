@@ -112,3 +112,9 @@ Voici le widget standard.
 >**Puis-je récupérer les compteurs pour le gaz et l'eau ?**
 >
 >Le plugin est capable de le faire. Malheureusement, l'API de Netatmo ne spécifie pas quel est le 'type' à utiliser pour la récupération de ces valeurs. Une demande a été faite à l'équipe en charge du développement de l'API mais aucune réponse n'a encore été fournie.
+
+# Avis
+
+![EcoNetatmo_avis](../images/EcoNetatmo_avis.png)
+
+Si vous appréciez ce plugin, merci de laisser une évaluation et un commentaire sur le Jeedom market, ça fait toujours plaisir: <https://jeedom.com/market/index.php?v=d&p=market_display&id=4413#>
