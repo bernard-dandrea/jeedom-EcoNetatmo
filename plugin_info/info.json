@@ -20,8 +20,8 @@
 	"maxDependancyInstallTime" : 0,
 	"changelog" : "https://bernard-dandrea.github.io/jeedom-EcoNetatmo/#language#/changelog",
 	"documentation" : "https://bernard-dandrea.github.io/jeedom-EcoNetatmo/#language#/",
-	"changelog_beta" : "https://bernard-dandrea.github.io/jeedom-EcoNetatmo/#language#/changelog_beta",
-	"documentation_beta" : "https://bernard-dandrea.github.io/jeedom-EcoNetatmo/#language#/index_beta",
+	"changelog_beta" : "https://bernard-dandrea.github.io/jeedom-EcoNetatmo/#language#/changelog",
+	"documentation_beta" : "https://bernard-dandrea.github.io/jeedom-EcoNetatmo/#language#/index",
 	"link" : {
 	},
 	"language": [
