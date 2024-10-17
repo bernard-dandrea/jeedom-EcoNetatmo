@@ -71,7 +71,7 @@ class EcoNetatmo extends eqLogic
         }
     }
 
-    public function cronHourly()
+    public static function cronHourly()
     {
         // avec Netatmo, une fois que le token est expiré, on ne peut plus faire de refresh
         // (ce qui est normalement bien géré avec getAccessTokenFromRefreshToken)
@@ -325,7 +325,7 @@ class EcoNetatmo extends eqLogic
         }
     }
 
-    public function cron10()
+    public static function cron10()
     {
         sleep(10);
         log::add('EcoNetatmo', 'info', 'Start cron10');
@@ -333,7 +333,7 @@ class EcoNetatmo extends eqLogic
     }
 
 
-    public function cron_update($_cron)
+    public static function cron_update($_cron)
     {
         foreach (eqLogic::byTypeAndSearchConfiguration('EcoNetatmo', '"type":"EcoNetatmo"') as $eqLogic) {
             if ($eqLogic->getIsEnable()) {
