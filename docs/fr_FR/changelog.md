@@ -4,6 +4,10 @@
 >
 >S'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte.
 
+# 20/05/2025
+
+- Modification de la bibliothèque d'accès à Netatmo suite à un probleme qui empéchait la récupération des données
+
 # 07/11/2024
 
 - Passage des methodes cron en static pour éviter erreur en PHP 8

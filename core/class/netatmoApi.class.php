@@ -138,7 +138,8 @@ class netatmoApi {
       if(!$decode){
         throw new Exception($body);
       }
-      throw new Exception($body);
+      // throw new Exception($body);
+      return $decode;
     }
   }
   
