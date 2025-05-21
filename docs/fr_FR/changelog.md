@@ -6,7 +6,7 @@
 
 # 20/05/2025
 
-- Modification de la bibliothèque d'accès à Netatmo qui empéchait la récupération des données
+- Modification de la bibliothèque d'accès à Netatmo suite à un probleme qui empéchait la récupération des données
 
 # 07/11/2024
 
