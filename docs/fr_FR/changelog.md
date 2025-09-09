@@ -4,6 +4,10 @@
 >
 >S'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte.
 
+# 09/09/2025
+
+- Correction addresses internet de Netamo (remplacer .net par .com): il faudra certainement regénérer les tokens pour rétablir la communication 
+
 # 20/05/2025
 
 - Modification de la bibliothèque d'accès à Netatmo suite à un probleme qui empéchait la récupération des données
