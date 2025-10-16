@@ -4,6 +4,11 @@
 >
 >S'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte.
 
+# 16/10/2025
+
+- Correction problème en PHP8 lors du renouvellemnt des tokens
+- Correction pour supprimer warning PHP lors de la synchronisation
+- 
 # 09/09/2025
 
 - Correction addresses internet de Netamo (remplacer .net par .com): il faudra certainement regénérer les tokens pour rétablir la communication 
