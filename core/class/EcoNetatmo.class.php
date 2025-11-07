@@ -63,7 +63,7 @@ class EcoNetatmo extends eqLogic
         }
         return self::$_client;
     }
-    function saveTokens($p_token)
+    static function saveTokens($p_token)
     {
         foreach ($p_token as $key => $value) {
             log::add('EcoNetatmo', 'debug', __('saveTokens ', __FILE__) . $key . ' -> ' . $value);
@@ -153,7 +153,7 @@ class EcoNetatmo extends eqLogic
     public function Counters_Import($_consumption_type, $_source_type)
     {
 
-        log::add('EcoNetatmo', 'debug', __('Counters_Import ', __FILE__) . $this->name . '  _consumption_type ' . $_consumption_type . ' _source_type '. $_source_type);
+        log::add('EcoNetatmo', 'debug', __('Counters_Import ', __FILE__) . $this->name . '  _consumption_type ' . $_consumption_type . ' _source_type ' . $_source_type);
 
         switch ($_consumption_type) {
             case ('electrical'):
@@ -252,18 +252,20 @@ class EcoNetatmo extends eqLogic
                     $last_update = $beg_time;
                     foreach ($measurelist as $measures) {
                         log::add('EcoNetatmo', 'debug', $this->getLogicalId() . ' ' . $this->getName() . ' : $mesures : ' . print_r($measures, true));
-                        $value = $measures['value'];
-                        $beg_time = $measures['beg_time'];
-                        log::add('EcoNetatmo', 'debug', $this->getLogicalId() . ' ' . $this->getName() . ' : beg_time ' . date('Y-m-d H:i:s', $beg_time)  . ' (' . $beg_time . ')' . ' step_time ' . $step_time . ' values ' . print_r($measures['value'], true));
-                        $x = 0;
-                        foreach ($measures['value'] as $value) {
-                            log::add('EcoNetatmo', 'info', $this->getLogicalId() . ' ' . $this->getName() . ' : ' .  $x . ' beg_time ' . date('Y-m-d H:i:s', $beg_time)  . ' (' . $beg_time . ')' . ' value ' . $value[0]);
-                            if ($value[0] != 0) {
-                                $cmd->event($value[0], date('Y-m-d H:i:s', $beg_time));
+                        if (isset($measures['value']) && isset($measures['beg_time'])) {
+                            $value = $measures['value'];
+                            $beg_time = $measures['beg_time'];
+                            log::add('EcoNetatmo', 'debug', $this->getLogicalId() . ' ' . $this->getName() . ' : beg_time ' . date('Y-m-d H:i:s', $beg_time)  . ' (' . $beg_time . ')' . ' step_time ' . $step_time . ' values ' . print_r($measures['value'], true));
+                            $x = 0;
+                            foreach ($measures['value'] as $value) {
+                                log::add('EcoNetatmo', 'info', $this->getLogicalId() . ' ' . $this->getName() . ' : ' .  $x . ' beg_time ' . date('Y-m-d H:i:s', $beg_time)  . ' (' . $beg_time . ')' . ' value ' . $value[0]);
+                                if ($value[0] != 0) {
+                                    $cmd->event($value[0], date('Y-m-d H:i:s', $beg_time));
+                                }
+                                $last_update = $beg_time;
+                                $beg_time += $step_time;
+                                $x += 1;
                             }
-                            $last_update = $beg_time;
-                            $beg_time += $step_time;
-                            $x += 1;
                         }
                     }
                     $last_update += $step_time / 2;
