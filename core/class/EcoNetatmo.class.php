@@ -1,5 +1,9 @@
 <?php
 
+
+// Last Modified : 2026/07/22 18:21:16
+
+
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -29,6 +33,33 @@ class EcoNetatmo extends eqLogic
 {
 
     private static $_client = null;
+
+    public static function enable_cron($_enable)
+    {
+        $cron_EcoNetatmo = cron::byClassAndFunction('EcoNetatmo', 'update');
+        $schedule = '*/10 * * * *';
+        if ($_enable == '1') {
+            log::add('EcoNetatmo', 'debug', __('Activation du cron de EcoNetatmo', __FILE__));
+            if (!is_object($cron_EcoNetatmo)) {
+                $cron_EcoNetatmo = new cron();
+                $cron_EcoNetatmo->setClass('EcoNetatmo');
+                $cron_EcoNetatmo->setFunction('update');
+                $cron_EcoNetatmo->setEnable(1);
+                $cron_EcoNetatmo->setDeamon(0);
+                $cron_EcoNetatmo->setSchedule($schedule);
+                $cron_EcoNetatmo->setTimeout(1);
+            } else {
+                $cron_EcoNetatmo->setEnable(1);
+            }
+            $cron_EcoNetatmo->save();
+        } else {
+            log::add('EcoNetatmo', 'debug', __('Désactivation du cron de EcoNetatmo', __FILE__));
+            if (is_object($cron_EcoNetatmo)) {
+                $cron_EcoNetatmo->remove();
+            }
+        }
+
+    }
 
     public static function getClient()
     {
@@ -71,17 +102,17 @@ class EcoNetatmo extends eqLogic
         }
     }
 
-    public static function cronHourly()
+
+    public static function refresh_token()
     {
         // avec Netatmo, une fois que le token est expiré, on ne peut plus faire de refresh
         // (ce qui est normalement bien géré avec getAccessTokenFromRefreshToken)
-        // aussi, on fait un refresh du token toutes les heures pour être sur qu'ile st toujours valide
+        // aussi, on fait un refresh du token toutes les heures pour être sur qu'il est toujours valide
         log::add('EcoNetatmo', 'info', 'Refresh token');
         // dans netatmoApi.class.php, remplacer le private par public devant la fonction getAccessTokenFromRefreshToken
         self::getClient()->getAccessTokenFromRefreshToken();
-        EcoNetatmo::cron_update(__FUNCTION__);
+        // EcoNetatmo::update(__FUNCTION__);  // fait dans le cron 10
     }
-
 
 
     public static function createEquipmentsAndCommands()
@@ -327,19 +358,28 @@ class EcoNetatmo extends eqLogic
         }
     }
 
+
     public static function cron10()
     {
-        sleep(10);
-        log::add('EcoNetatmo', 'info', 'Start cron10');
-        EcoNetatmo::cron_update(__FUNCTION__);
+        $cron_EcoNetatmo = cron::byClassAndFunction('EcoNetatmo', 'update');
+        if (!is_object($cron_EcoNetatmo)) {
+            log::add('EcoNetatmo', 'info', 'Lancement de cron');
+            EcoNetatmo::update();
+        }
     }
 
-
-    public static function cron_update($_cron)
+    public static function update()
     {
+        // rafraichit le token toutes les heures
+        $autorefresh = '0 * * * *';
+        $c = new Cron\CronExpression($autorefresh, new Cron\FieldFactory);
+        if ($c->isDue()) {
+            EcoNetatmo::refresh_token();
+        }
+
         foreach (eqLogic::byTypeAndSearchConfiguration('EcoNetatmo', '"type":"EcoNetatmo"') as $eqLogic) {
             if ($eqLogic->getIsEnable()) {
-                log::add('EcoNetatmo', 'info', 'cron Refresh Info  : ' . $eqLogic->name);
+                log::add('EcoNetatmo', 'info', 'cron Refresh Info  : ' . $eqLogic->getName());
                 $eqLogic->refresh_counters();
             }
         }
