@@ -1,4 +1,8 @@
 <?php
+
+
+// Last Modified : 2026/07/22 18:27:52
+
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -20,6 +24,7 @@ require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 // Fonction exécutée automatiquement après l'installation du plugin
 
 function EcoNetatmo_install()
+{
 
 }
 
@@ -44,5 +49,10 @@ function EcoNetatmo_pre_update()
 
 function EcoNetatmo_remove()
 {
+
+    $cron = cron::byClassAndFunction('EcoNetatmo', 'update');
+    if (is_object($cron)) {
+        $cron->remove();
+    }
 
 }
