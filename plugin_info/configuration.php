@@ -1,4 +1,8 @@
 <?php
+
+
+// Last Modified : 2026/07/22 18:33:54
+
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -54,8 +58,38 @@ if (!isConnect()) {
         </div>
       </div>
 
-
+      <div class=" form-group">
+        <label class="col-sm-4 control-label">{{Utiliser un cron autonome (via le moteur des tâches)}}</label>
+        <div class="col-sm-4">
+          <select style="width: 150px;" id="sel_CronSpecifique" class="configKey form-control" data-l1key="CronSpecifique">
+            <option value="">{{Non}}</option>
+            <option value="1">{{Oui}}</option>
+          </select>
+        </div>
+      </div>
 
     </div>
   </fieldset>
 </form>
+<script>
+  document.getElementById('bt_savePluginConfig').addEventListener('click', function(event) {
+    event.preventDefault();
+
+    const selectElement = document.getElementById('sel_CronSpecifique');
+    const selectedValue = selectElement.value;
+    var paramsAJAX = {
+      url: 'plugins/EcoNetatmo/core/ajax/EcoNetatmo.ajax.php',
+      data: {
+        action: 'enable_cron',
+        enable: selectedValue
+      },
+      dataType: 'json',
+      success: function(data) {},
+      error: function(request, status, error) {
+        handleAjaxError(request, status, error);
+      }
+    }
+    domUtils.ajax(paramsAJAX);
+
+  });
+</script>
