@@ -1,6 +1,5 @@
 <?php
 
-
 // Last Modified : 2026/07/22 14:10:19
 
 /* This file is part of Jeedom.
@@ -33,17 +32,8 @@ try {
     // From button on Configuration page
     if (init('action') == 'createEquipmentsAndCommands') {
 
-        //@@todo : ajouter un message d'attente en JS, bg ora
-
-
-        // Get data from Netatmo : create equipment.
-        log::add('EcoNetatmo', 'debug', 'ajax createEquipmentsAndCommands');
         EcoNetatmo::createEquipmentsAndCommands();
 
-        // Run task cron : get sensor's value
-        // EcoNetatmo::cron15();
-
-        // success
         ajax::success();
     }
 
