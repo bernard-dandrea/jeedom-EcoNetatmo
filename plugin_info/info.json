@@ -1,31 +1,37 @@
 {
-	"id" : "EcoNetatmo",
-	"name" : "EcoNetatmo",
-	"specialAttributes" : {
-		"object" : {
-
-		},
-		"user" : {
-		}
+	"id": "EcoNetatmo",
+	"name": "EcoNetatmo",
+	"specialAttributes": {
+		"object": {},
+		"user": {}
 	},
-	"description" : {
-		"fr_FR": "Plugin permettant de récupérer les consommations des écocompteurs Legrand de la série Drivia with Netatmo référence 41203x"
+	"description": {
+		"fr_FR": "Plugin permettant de récupérer les consommations des écocompteurs Legrand de la série Drivia with Netatmo référence 41203x",
+		"en_US": "Plugin for retrieving energy consumption data from Legrand Drivia with Netatmo smart meters (part number 41203x)",
+		"es_ES": "Complemento que permite recopilar los datos de consumo de los contadores ecológicos Legrand de la serie Drivia with Netatmo, con referencia 41203x",
+		"de_DE": "Plugin zum Abrufen der Verbrauchsdaten der Legrand-Ökozähler der Serie Drivia with Netatmo (Artikelnummer 41203x)",
+		"it_IT": "Plugin che consente di rilevare i consumi dei contatori ecologici Legrand della serie Drivia with Netatmo, codice articolo 41203x",
+		"pt_PT": "Plugin que permite obter os dados de consumo dos contadores ecológicos Legrand da série Drivia with Netatmo, com a referência 41203x"
 	},
-	"licence" : "AGPL",
-	"author" : "Bernard Dandrea",
-	"require" : "4.2.0",
-	"category" : "energy",
-	"hasDependency" : false,
-	"hasOwnDeamon" : false,
-	"maxDependancyInstallTime" : 0,
-	"changelog" : "https://bernard-dandrea.github.io/documentation/jeedom-EcoNetatmo/doc/#language#/changelog",
-	"documentation" : "https://bernard-dandrea.github.io/documentation/jeedom-EcoNetatmo/doc/#language#/index",
-	"changelog_beta" : "https://bernard-dandrea.github.io/documentation/jeedom-EcoNetatmo/doc/#language#/changelog_beta",
-	"documentation_beta" : "https://bernard-dandrea.github.io/documentation/jeedom-EcoNetatmo/doc/#language#/index_beta",
-	"link" : {
-	},
+	"licence": "AGPL",
+	"author": "Bernard Dandrea",
+	"require": "4.2.0",
+	"category": "energy",
+	"hasDependency": false,
+	"hasOwnDeamon": false,
+	"maxDependancyInstallTime": 0,
+	"changelog": "https://bernard-dandrea.github.io/documentation/jeedom-EcoNetatmo/doc/#language#/changelog",
+	"documentation": "https://bernard-dandrea.github.io/documentation/jeedom-EcoNetatmo/doc/#language#/index",
+	"changelog_beta": "https://bernard-dandrea.github.io/documentation/jeedom-EcoNetatmo/doc/#language#/changelog_beta",
+	"documentation_beta": "https://bernard-dandrea.github.io/documentation/jeedom-EcoNetatmo/doc/#language#/index_beta",
+	"link": {},
 	"language": [
-		"fr_FR"
+		"de_DE",
+		"en_US",
+		"es_ES",
+		"fr_FR",
+		"it_IT",
+		"pt_PT"
 	],
 	"compatibility": [
 		"miniplus",
@@ -38,4 +44,3 @@
 		"atlas"
 	]
 }
-
