@@ -14,7 +14,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
     <legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
     <!-- Boutons de gestion du plugin -->
     <div class="eqLogicThumbnailContainer">
-      <div class="cursor eqLogicAction logoSecondary npd_btn_sync">
+      <div class="cursor eqLogicAction logoSecondary " id="npd_btn_sync">
         <i class="fas fa-sync-alt" style="color:rgb(169, 52, 206)"></i>
         <br>
         <span>{{Synchronisation}}</span>
@@ -167,13 +167,13 @@ $eqLogics = eqLogic::byType($plugin->getId());
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-4 control-label">{{Consumption Type}}</label>
+                <label class="col-sm-4 control-label">{{Type de consommation}}</label>
                 <div class="col-sm-6">
                   <span class="eqLogicAttr" data-l1key="configuration" data-l2key="consumption_type"></span>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-4 control-label">{{Source Type}}</label>
+                <label class="col-sm-4 control-label">{{Type de source}}</label>
                 <div class="col-sm-6">
                   <span class="eqLogicAttr" data-l1key="configuration" data-l2key="source_type"></span>
                 </div>
@@ -222,21 +222,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
         <br><br>
         <div class="table-responsive">
           <table id="table_cmd" class="table table-bordered table-condensed">
-            <thead>
-              <tr>
-                <th class="hidden-xs" style="min-width:50px;width:70px;">ID</th>
-                <th style="min-width:200px;width:350px;">{{Nom}}</th>
-                <th>{{logicalID}}</th>
-                <th>{{Type}}</th>
-                <th style="min-width:260px;">{{Options}}</th>
-                <th>{{Période}}</th>
-                <th>{{Valeur}}
-                </th>
-                <th style="min-width:80px;width:200px;">{{Actions}}</th>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
+
           </table>
         </div>
       </div><!-- /.tabpanel #commandtab-->
