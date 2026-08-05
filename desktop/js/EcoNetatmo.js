@@ -1,5 +1,7 @@
 /* This file is part of Jeedom.
-*
+
+// Last Modified : 2026/08/05 17:08:21
+
 * Jeedom is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
 * the Free Software Foundation, either version 3 of the License, or
@@ -53,9 +55,11 @@ function addCmdToTable(_cmd) {
     tr += '<span class="input-group-btn"><a class="cmdAction btn btn-sm btn-default" data-l1key="chooseIcon" title="{{Choisir une icône}}"><i class="fas fa-icons"></i></a></span>'
     tr += '<span class="cmdAttr input-group-addon roundedRight" data-l1key="display" data-l2key="icon" style="font-size:19px;padding:0 5px 0 0!important;"></span>'
     tr += '</div>'
-    tr += '<select class="cmdAttr form-control input-sm" data-l1key="value" style="display:none;margin-top:5px;" title="{{Commande info liée}}">'
-    tr += '<option value="">{{Aucune}}</option>'
-    tr += '</select>'
+    /*  Pas utile
+        tr += '<select class="cmdAttr form-control input-sm" data-l1key="value" style="display:none;margin-top:5px;" title="{{Commande info liée}}">'
+        tr += '<option value="">{{Aucune}}</option>'
+        tr += '</select>'
+    */
     tr += '</td>'
     tr += '<td  class="hidden-xs">';
     tr += '<span class="cmdAttr" data-l1key="logicalId"></span>'
@@ -169,17 +173,19 @@ document.querySelector('#npd_btn_sync').addEventListener('click', function () {
 })
 
 document.querySelector('#bt_counters_import').addEventListener('click', function () {
-
+console.log('Import des compteurs');
     var eqLogicId = document.querySelector('.eqLogicAttr[data-l1key="id"]').value;
-
+    var consumption_type = document.querySelector('.eqLogicAttr[data-l1key="configuration"][data-l2key="consumption_type"]').textContent.trim();
+    var source_type = document.querySelector('.eqLogicAttr[data-l1key="configuration"][data-l2key="source_type"]').textContent.trim();
+    
     var paramsAJAX = {
         type: "POST",
         url: 'plugins/EcoNetatmo/core/ajax/EcoNetatmo.ajax.php',
         data: {
             action: 'counters_import',
             id: eqLogicId,
-            consumption_type: init(document.querySelector('.eqLogicAttr[data-l1key="configuration"][data-l2key="consumption_type"]')),
-            source_type: init(document.querySelector('.eqLogicAttr[data-l1key="configuration"][data-l2key="source_type"]'))
+            consumption_type: consumption_type,
+            source_type: source_type
         },
         dataType: 'json',
         error: function (request, status, error) {
