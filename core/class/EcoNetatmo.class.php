@@ -1,6 +1,6 @@
 <?php
 
-// Last Modified : 2026/08/04 18:06:04
+// Last Modified : 2026/08/05 17:17:03
 
 /* This file is part of Jeedom.
  *
@@ -60,34 +60,17 @@ class EcoNetatmo extends eqLogic
 
     public static function getClient()
     {
-
         if (self::$_client == null) {
-            $code = config::byKey('code', 'EcoNetatmo');
-            if ($code == '') {
-                self::$_client = new netatmoApi(
-                    array(
-                        'client_id' => config::byKey('client_id', 'EcoNetatmo'),
-                        'client_secret' => config::byKey('client_secret', 'EcoNetatmo'),
-                        'access_token' => config::byKey('access_token', 'EcoNetatmo'),
-                        'refresh_token' => config::byKey('refresh_token', 'EcoNetatmo'),
-                        'object_cb' => 'EcoNetatmo',
-                        'func_cb' => 'saveTokens'
-                    )
-                );
-            } else {
-                self::$_client = new netatmoApi(
-                    array(
-                        'client_id' => config::byKey('client_id', 'EcoNetatmo'),
-                        'client_secret' => config::byKey('client_secret', 'EcoNetatmo'),
-                        'grant_type' => 'authorization_code',
-                        'code' => $code,
-                        'redirect_uri' => 'https://97cef5b2.eu.jeedom.link/Netatmo_connect.php',
-                        'object_cb' => 'EcoNetatmo',
-                        'func_cb' => 'saveTokens',
-                        'scope' => 'read_magellan'
-                    )
-                );
-            }
+            self::$_client = new netatmoApi(
+                array(
+                    'client_id' => config::byKey('client_id', 'EcoNetatmo'),
+                    'client_secret' => config::byKey('client_secret', 'EcoNetatmo'),
+                    'access_token' => config::byKey('access_token', 'EcoNetatmo'),
+                    'refresh_token' => config::byKey('refresh_token', 'EcoNetatmo'),
+                    'object_cb' => 'EcoNetatmo',
+                    'func_cb' => 'saveTokens'
+                )
+            );
         }
         return self::$_client;
     }
@@ -98,7 +81,6 @@ class EcoNetatmo extends eqLogic
             config::save($key, $value, 'EcoNetatmo');
         }
     }
-
 
     public static function refresh_token()
     {
@@ -113,7 +95,6 @@ class EcoNetatmo extends eqLogic
 
     public static function createEquipmentsAndCommands()
     {
-
         log::add('EcoNetatmo', 'debug', 'createEquipmentsAndCommands');
 
         $devicelist = self::getClient()->api("homesdata", "GET");
@@ -150,7 +131,7 @@ class EcoNetatmo extends eqLogic
                         }
                         if ($ignore == false) {
                             $eqLogic = new EcoNetatmo();
-                            log::add('EcoNetatmo', 'info', __('Création eqLogic', __FILE__) . ' ' . $module_id . ' ' . __('type_de_consommation', __FILE__) . ' ' . $consumption_type . ' ' . __('type_de_source', __FILE__) . ' ' . $source_type);
+                            log::add('EcoNetatmo', 'info', __('Création eqLogic', __FILE__) . ' ' . $module_id . ' ' . __('type de consommation', __FILE__) . ' ' . $consumption_type . ' ' . __('type de source', __FILE__) . ' ' . $source_type);
                             if (!isset($module['module_name']) || $module['module_name'] == '') {
                                 $module['module_name'] = $module['_id'];
                             }
@@ -180,7 +161,7 @@ class EcoNetatmo extends eqLogic
     public function Counters_Import($_consumption_type, $_source_type)
     {
 
-        log::add('EcoNetatmo', 'debug', 'Counters_Import ' . $this->getName() . ': ' . '  ' . __('type_de_consommation', __FILE__) . ' ' . $_consumption_type . ' ' . __('type_de_source', __FILE__) . ' ' . $_source_type);
+        log::add('EcoNetatmo', 'debug', 'Counters_Import ' . $this->getName() . ': ' . '  ' . __('type de consommation', __FILE__) . ' ' . $_consumption_type . ' ' . __('type de source', __FILE__) . ' ' . $_source_type);
 
         switch ($_consumption_type) {
             case ('electrical'):
@@ -194,7 +175,7 @@ class EcoNetatmo extends eqLogic
                 $this->create_counter('Sum energy price off peak period with contract', 'sum_energy_price$2', $consumption_type, '0');
 
                 break;
-            case ('fluid'):
+            case ('fluid'): // pas géré par Netatmo, mais on crée quand même la commande pour l'historisation
                 $this->create_counter($_source_type, 'sum_energy_elec', $consumption_type);
                 break;
         }
@@ -205,7 +186,7 @@ class EcoNetatmo extends eqLogic
     {
         log::add('EcoNetatmo', 'info', 'create_counter ' . $this->getName() . '  name = ' . $_name . '  type = ' . $_type);
         if (is_object(cmd::byEqLogicIdAndLogicalId($this->id, $_type))) {
-            log::add('EcoNetatmo', 'info', 'create_counter ' . $this->getName() .' ' . __('commande déjà créée . type = ',__FILE__) . $_type);
+            log::add('EcoNetatmo', 'info', 'create_counter ' . $this->getName() . ' ' . __('commande déjà créée . type = ', __FILE__) . $_type);
         } else {
             $cmd = new EcoNetatmoCmd();
             $cmd->setName($_name);
@@ -258,7 +239,7 @@ class EcoNetatmo extends eqLogic
                     $beg_time = strtotime('today -7 days');
                 }
 
-                log::add('EcoNetatmo', 'info', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('lecture de la mesure depuis',__FILE__) .  ' ' . date('Y-m-d H:i:s', $beg_time) . ' (' . $beg_time . ')');
+                log::add('EcoNetatmo', 'info', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('lecture de la mesure depuis', __FILE__) .  ' ' . date('Y-m-d H:i:s', $beg_time) . ' (' . $beg_time . ')');
                 $measurelist = self::getClient()->api(
                     "getmeasure",
                     "GET",
@@ -271,22 +252,25 @@ class EcoNetatmo extends eqLogic
                     )
                 );
 
-                if (empty($measurelist)) {
-                    log::add('EcoNetatmo', 'info', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('pas de modification depuis',__FILE__) . ' ' . date('Y-m-d H:i:s', $beg_time) . ' (' . $beg_time . ')');
+                if (isset($measurelist['error'])) {
+                    log::add('EcoNetatmo', 'error', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('erreur Netatmo', __FILE__) . ' ' . $measurelist['error']['code'] . ' ' . $measurelist['error']['message']);
+                } elseif (empty($measurelist)) {
+                    log::add('EcoNetatmo', 'info', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('pas de modification depuis', __FILE__) . ' ' . date('Y-m-d H:i:s', $beg_time) . ' (' . $beg_time . ')');
                 } else {
-                    log::add('EcoNetatmo', 'debug', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('liste des mesures depuis',__FILE__) . ' ' . date('Y-m-d H:i:s', $beg_time) . ' (' . $beg_time . ')' . ' : ' . print_r($measurelist, true));
+                    log::add('EcoNetatmo', 'debug', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('liste des mesures depuis', __FILE__) . ' ' . date('Y-m-d H:i:s', $beg_time) . ' (' . $beg_time . ')' . ' : ' . print_r($measurelist, true));
                     $last_update = $beg_time;
                     foreach ($measurelist as $measures) {
-                        log::add('EcoNetatmo', 'debug', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('mesures',__FILE__) . ' : ' . print_r($measures, true));
+                        log::add('EcoNetatmo', 'debug', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('mesures', __FILE__) . ' : ' . print_r($measures, true));
                         if (isset($measures['value']) && isset($measures['beg_time'])) {
                             $value = $measures['value'];
                             $beg_time = $measures['beg_time'];
-                            log::add('EcoNetatmo', 'debug', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('début',__FILE__) . ' ' . date('Y-m-d H:i:s', $beg_time)  . ' (' . $beg_time . ')' . ' ' . __('intervalle   ',__FILE__) . ' ' . $step_time . ' ' . __('values',__FILE__) . ' ' . print_r($measures['value'], true));
+                            log::add('EcoNetatmo', 'debug', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('début', __FILE__) . ' ' . date('Y-m-d H:i:s', $beg_time)  . ' (' . $beg_time . ')' . ' ' . __('intervalle   ', __FILE__) . ' ' . $step_time . ' ' . __('values', __FILE__) . ' ' . print_r($measures['value'], true));
                             $x = 0;
                             foreach ($measures['value'] as $value) {
-                                log::add('EcoNetatmo', 'info', $this->getLogicalId() . ' ' . $this->getName() . ' : ' .  $x . ' ' . __('début',__FILE__) . ' ' . date('Y-m-d H:i:s', $beg_time)  . ' (' . $beg_time . ')' . ' ' . __('valeur',__FILE__) . ' ' . $value[0]);
+                                log::add('EcoNetatmo', 'info', $this->getLogicalId() . ' ' . $this->getName() . ' : ' .  $x . ' ' . __('début', __FILE__) . ' ' . date('Y-m-d H:i:s', $beg_time)  . ' (' . $beg_time . ')' . ' ' . __('valeur', __FILE__) . ' ' . $value[0]);
                                 if ($value[0] != 0) {
-                                    $cmd->event($value[0], date('Y-m-d H:i:s', $beg_time));
+                                    $eqLogic = $_cmd->getEqlogic();
+                                    $eqLogic->checkAndUpdateCmd($_cmd, $value[0], date('Y-m-d H:i:s', $beg_time));
                                 }
                                 $last_update = $beg_time;
                                 $beg_time += $step_time;
@@ -296,7 +280,7 @@ class EcoNetatmo extends eqLogic
                     }
                     $last_update += $step_time / 2;
                     $cmd->setConfiguration('last_update', $last_update);
-                    log::add('EcoNetatmo', 'debug', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('dernière mise à jour',__FILE__) . ' '  . date('Y-m-d H:i:s', $last_update)  . ' (' . $last_update . ')');
+                    log::add('EcoNetatmo', 'debug', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('dernière mise à jour', __FILE__) . ' '  . date('Y-m-d H:i:s', $last_update)  . ' (' . $last_update . ')');
 
                     $cmd->save();
                 }
@@ -374,8 +358,9 @@ class EcoNetatmoCmd extends cmd
         }
 
         // Commande refresh
-
-        return $eqLogic->refresh_counters();
+        if ($eqLogic->getLogicalId() == 'Refresh') {
+            return $eqLogic->refresh_counters();
+        }
     }
 
 
