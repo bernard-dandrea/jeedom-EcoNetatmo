@@ -1,6 +1,6 @@
 <?php
 
-// Last Modified : 2026/07/22 14:10:19
+// Last Modified : 2026/08/05 10:38:01
 
 /* This file is part of Jeedom.
  *
@@ -45,6 +45,8 @@ try {
         }
         $consumption_type = init('consumption_type');
         $source_type = init('source_type');
+        log::add('EcoNetatmo', 'debug', 'counters_import - consumption_type: ' . $consumption_type);
+        log::add('EcoNetatmo', 'debug', 'counters_import - source_type: ' . $source_type);
         $EcoNetatmo  = $eqLogic->counters_import($consumption_type,$source_type);
         ajax::success($EcoNetatmo);
     }
