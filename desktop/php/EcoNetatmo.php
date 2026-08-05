@@ -1,6 +1,6 @@
 <?php
 
-// Last Modified : 2026/08/05 10:33:50
+// Last Modified : 2026/08/05 17:29:59
 
 if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
@@ -164,7 +164,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-4 control-label">{{Module ID}}</label>
+                <label class="col-sm-4 control-label">Module ID</label>
                 <div class="col-sm-6">
                   <span class="eqLogicAttr" data-l1key="logicalId"></span>
                 </div>
