@@ -1,6 +1,6 @@
 <?php
 
-// Last Modified : 2026/08/05 17:17:03
+// Last Modified : 2026/08/05 17:32:21
 
 /* This file is part of Jeedom.
  *
@@ -264,7 +264,7 @@ class EcoNetatmo extends eqLogic
                         if (isset($measures['value']) && isset($measures['beg_time'])) {
                             $value = $measures['value'];
                             $beg_time = $measures['beg_time'];
-                            log::add('EcoNetatmo', 'debug', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('début', __FILE__) . ' ' . date('Y-m-d H:i:s', $beg_time)  . ' (' . $beg_time . ')' . ' ' . __('intervalle   ', __FILE__) . ' ' . $step_time . ' ' . __('values', __FILE__) . ' ' . print_r($measures['value'], true));
+                            log::add('EcoNetatmo', 'debug', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('début', __FILE__) . ' ' . date('Y-m-d H:i:s', $beg_time)  . ' (' . $beg_time . ')' . ' ' . __('intervalle', __FILE__) . ' ' . $step_time . ' ' . __('values', __FILE__) . ' ' . print_r($measures['value'], true));
                             $x = 0;
                             foreach ($measures['value'] as $value) {
                                 log::add('EcoNetatmo', 'info', $this->getLogicalId() . ' ' . $this->getName() . ' : ' .  $x . ' ' . __('début', __FILE__) . ' ' . date('Y-m-d H:i:s', $beg_time)  . ' (' . $beg_time . ')' . ' ' . __('valeur', __FILE__) . ' ' . $value[0]);
