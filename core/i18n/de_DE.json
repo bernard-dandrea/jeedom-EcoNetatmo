@@ -14,7 +14,7 @@
         "début": "Start",
         "eqLogic déjà créé": "eqLogic bereits angelegt",
         "erreur Netatmo": "Netatmo-Fehler",
-        "intervalle   ": "Intervall   ",
+        "intervalle": "Intervall",
         "lecture de la mesure depuis": "Ablesen des Messwerts von",
         "liste des mesures depuis": "Liste der Maßnahmen seit",
         "mesures": "Maßnahmen",
@@ -79,7 +79,6 @@
         "Lave-vaisselle": "Geschirrspüler",
         "Lumière": "Licht",
         "Mes Ecocompteurs": "Meine Öko-Zähler",
-        "Module ID": "Modul-ID",
         "Multimédia": "Multimedia",
         "Nom": "Name",
         "Objet parent": "Übergeordnetes Objekt",
@@ -106,12 +105,8 @@
         "Visible": "Sichtbar"
     },
     "plugins\/EcoNetatmo\/plugin_info\/configuration.php": {
-        "Access token": "Zugriffstoken",
-        "Client ID": "Kunden-ID",
-        "Client secret": "Geheimer Client",
         "Non": "Nicht",
         "Oui": "Ja",
-        "Refresh token": "Aktualisierungstoken",
         "Utiliser un cron autonome (via le moteur des tâches)": "Verwendung eines eigenständigen Cron-Jobs (über die Aufgaben-Engine)"
     }
 }
