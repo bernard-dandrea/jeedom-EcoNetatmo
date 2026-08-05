@@ -6,9 +6,9 @@
     },
     "plugins\/EcoNetatmo\/core\/class\/EcoNetatmo.class.php": {
         "Activation du cron de EcoNetatmo": "Enabling the EcoNetatmo cron job",
-        "Création eqLogic": "Created by eqLogic",
+        "Création eqLogic": "eqLogic creation",
         "Désactivation du cron de EcoNetatmo": "Disabling the EcoNetatmo cron job",
-        "Lancement de cron": "Running cron",
+        "Lancement de cron": "cron start",
         "commande déjà créée . type = ": "Command already created. Type = ",
         "dernière mise à jour": "last update",
         "début": "Start",
@@ -19,7 +19,7 @@
         "liste des mesures depuis": "list of measurements since",
         "mesures": "measures",
         "pas de modification depuis": "no changes since",
-        "type de consommation": "type of consumption",
+        "type de consommation": "consumption type",
         "type de source": "source type",
         "valeur": "value",
         "values": "values"
