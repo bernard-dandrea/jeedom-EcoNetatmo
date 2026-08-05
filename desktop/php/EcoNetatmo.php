@@ -1,4 +1,7 @@
 <?php
+
+// Last Modified : 2026/08/05 10:33:50
+
 if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
@@ -167,15 +170,15 @@ $eqLogics = eqLogic::byType($plugin->getId());
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-4 control-label">{{Type de consommation}}</label>
+                <label class="col-sm-4 control-label" >{{Type de consommation}}</label>
                 <div class="col-sm-6">
-                  <span class="eqLogicAttr" data-l1key="configuration" data-l2key="consumption_type"></span>
+                  <span class="eqLogicAttr" id="consumption_type" data-l1key="configuration" data-l2key="consumption_type"></span>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-4 control-label">{{Type de source}}</label>
                 <div class="col-sm-6">
-                  <span class="eqLogicAttr" data-l1key="configuration" data-l2key="source_type"></span>
+                  <span class="eqLogicAttr" id="source_type" data-l1key="configuration" data-l2key="source_type"></span>
                 </div>
               </div>
 
