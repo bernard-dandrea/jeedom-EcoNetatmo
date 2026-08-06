@@ -1,6 +1,6 @@
 /* This file is part of Jeedom.
 
-// Last Modified : 2026/08/05 17:08:21
+// Last Modified : 2026/08/06 08:22:02
 
 * Jeedom is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -29,8 +29,7 @@ function addCmdToTable(_cmd) {
         table += '<th>{{Type}}</th>'
         table += '<th style="min-width:260px;">{{Options}}</th>'
         table += '<th>{{Période}}</th>'
-        table += '<th>{{Valeur}}'
-        table += '</th>'
+        table += '<th>{{Valeur}}</th>'
         table += '<th style="min-width:80px;width:200px;">{{Actions}}</th>'
         table += '</tr>'
         table += '</thead>'
