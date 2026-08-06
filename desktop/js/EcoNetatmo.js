@@ -1,6 +1,6 @@
 /* This file is part of Jeedom.
 
-// Last Modified : 2026/08/06 08:22:02
+// Last Modified : 2026/08/06 10:47:41
 
 * Jeedom is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -172,7 +172,7 @@ document.querySelector('#npd_btn_sync').addEventListener('click', function () {
 })
 
 document.querySelector('#bt_counters_import').addEventListener('click', function () {
-console.log('Import des compteurs');
+
     var eqLogicId = document.querySelector('.eqLogicAttr[data-l1key="id"]').value;
     var consumption_type = document.querySelector('.eqLogicAttr[data-l1key="configuration"][data-l2key="consumption_type"]').textContent.trim();
     var source_type = document.querySelector('.eqLogicAttr[data-l1key="configuration"][data-l2key="source_type"]').textContent.trim();
