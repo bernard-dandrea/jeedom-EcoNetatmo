@@ -1,6 +1,6 @@
 <?php
 
-// Last Modified : 2026/08/05 17:32:21
+// Last Modified : 2026/08/07 06:20:03
 
 /* This file is part of Jeedom.
  *
@@ -95,7 +95,7 @@ class EcoNetatmo extends eqLogic
 
     public static function createEquipmentsAndCommands()
     {
-        log::add('EcoNetatmo', 'debug', 'createEquipmentsAndCommands');
+        log::add('EcoNetatmo', 'debug', __FUNCTION__);
 
         $devicelist = self::getClient()->api("homesdata", "GET");
         log::add('EcoNetatmo', 'debug', json_encode($devicelist));
@@ -161,7 +161,7 @@ class EcoNetatmo extends eqLogic
     public function Counters_Import($_consumption_type, $_source_type)
     {
 
-        log::add('EcoNetatmo', 'debug', 'Counters_Import ' . $this->getName() . ': ' . '  ' . __('type de consommation', __FILE__) . ' ' . $_consumption_type . ' ' . __('type de source', __FILE__) . ' ' . $_source_type);
+        log::add('EcoNetatmo', 'debug', __FUNCTION__ . ' ' . $this->getName() . ': ' . '  ' . __('type de consommation', __FILE__) . ' ' . $_consumption_type . ' ' . __('type de source', __FILE__) . ' ' . $_source_type);
 
         switch ($_consumption_type) {
             case ('electrical'):
@@ -184,9 +184,9 @@ class EcoNetatmo extends eqLogic
     private function create_counter($_name, $_type, $_consumption_type, $_collected = '1')
     // crée la commande type info
     {
-        log::add('EcoNetatmo', 'info', 'create_counter ' . $this->getName() . '  name = ' . $_name . '  type = ' . $_type);
+        log::add('EcoNetatmo', 'info', __FUNCTION__ . ' ' . $this->getName() . '  name = ' . $_name . '  type = ' . $_type);
         if (is_object(cmd::byEqLogicIdAndLogicalId($this->id, $_type))) {
-            log::add('EcoNetatmo', 'info', 'create_counter ' . $this->getName() . ' ' . __('commande déjà créée . type = ', __FILE__) . $_type);
+            log::add('EcoNetatmo', 'info', __FUNCTION__ . ' ' . $this->getName() . ' ' . __('commande déjà créée . type = ', __FILE__) . $_type);
         } else {
             $cmd = new EcoNetatmoCmd();
             $cmd->setName($_name);
@@ -213,7 +213,7 @@ class EcoNetatmo extends eqLogic
 
     function refresh_counters()
     {
-        log::add('EcoNetatmo', 'info', 'refresh_counters ' . $this->getLogicalId() . ' ' . $this->getName());
+        log::add('EcoNetatmo', 'info', __FUNCTION__ . ' ' . $this->getLogicalId() . ' ' . $this->getName());
         $module_id = $this->getLogicalID();
         foreach ($this->getCmd() as $cmd) {
             if ($cmd->getConfiguration('isCollected') == 1 && $cmd->getType() == 'info') {
