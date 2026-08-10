@@ -1,6 +1,6 @@
 <?php
 
-// Last Modified : 2026/08/07 06:20:03
+// Last Modified : 2026/08/10 18:35:05
 
 /* This file is part of Jeedom.
  *
@@ -56,6 +56,18 @@ class EcoNetatmo extends eqLogic
                 $cron_EcoNetatmo->remove();
             }
         }
+    }
+
+    public static function FormatArrayForLog($value)
+    {
+        $options = JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_SUBSTITUTE;
+        $encoded = json_encode($value, $options);
+
+        if ($encoded === false) {
+            return json_encode((string) $value, $options);
+        }
+
+        return $encoded;
     }
 
     public static function getClient()
@@ -257,14 +269,14 @@ class EcoNetatmo extends eqLogic
                 } elseif (empty($measurelist)) {
                     log::add('EcoNetatmo', 'info', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('pas de modification depuis', __FILE__) . ' ' . date('Y-m-d H:i:s', $beg_time) . ' (' . $beg_time . ')');
                 } else {
-                    log::add('EcoNetatmo', 'debug', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('liste des mesures depuis', __FILE__) . ' ' . date('Y-m-d H:i:s', $beg_time) . ' (' . $beg_time . ')' . ' : ' . print_r($measurelist, true));
+                    log::add('EcoNetatmo', 'debug', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('liste des mesures depuis', __FILE__) . ' ' . date('Y-m-d H:i:s', $beg_time) . ' (' . $beg_time . ')' . ' : ' . self::FormatArrayForLog($measurelist));
                     $last_update = $beg_time;
                     foreach ($measurelist as $measures) {
-                        log::add('EcoNetatmo', 'debug', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('mesures', __FILE__) . ' : ' . print_r($measures, true));
+                        log::add('EcoNetatmo', 'debug', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('mesures', __FILE__) . ' : ' . self::FormatArrayForLog($measures));
                         if (isset($measures['value']) && isset($measures['beg_time'])) {
                             $value = $measures['value'];
                             $beg_time = $measures['beg_time'];
-                            log::add('EcoNetatmo', 'debug', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('début', __FILE__) . ' ' . date('Y-m-d H:i:s', $beg_time)  . ' (' . $beg_time . ')' . ' ' . __('intervalle', __FILE__) . ' ' . $step_time . ' ' . __('values', __FILE__) . ' ' . print_r($measures['value'], true));
+                            log::add('EcoNetatmo', 'debug', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('début', __FILE__) . ' ' . date('Y-m-d H:i:s', $beg_time)  . ' (' . $beg_time . ')' . ' ' . __('intervalle', __FILE__) . ' ' . $step_time . ' ' . __('values', __FILE__) . ' ' . self::FormatArrayForLog($measures['value']));
                             $x = 0;
                             foreach ($measures['value'] as $value) {
                                 log::add('EcoNetatmo', 'info', $this->getLogicalId() . ' ' . $this->getName() . ' : ' .  $x . ' ' . __('début', __FILE__) . ' ' . date('Y-m-d H:i:s', $beg_time)  . ' (' . $beg_time . ')' . ' ' . __('valeur', __FILE__) . ' ' . $value[0]);
