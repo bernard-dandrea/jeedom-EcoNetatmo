@@ -1,6 +1,6 @@
 <?php
 
-// Last Modified : 2026/08/10 18:35:05
+// Last Modified : 2026/08/14 09:23:19
 
 /* This file is part of Jeedom.
  *
@@ -265,7 +265,7 @@ class EcoNetatmo extends eqLogic
                 );
 
                 if (isset($measurelist['error'])) {
-                    log::add('EcoNetatmo', 'error', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('erreur Netatmo', __FILE__) . ' ' . $measurelist['error']['code'] . ' ' . $measurelist['error']['message']);
+                    log::add('EcoNetatmo', $measurelist['error']['code']=='27' ? 'warning' : 'error', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('erreur Netatmo', __FILE__) . ' ' . $measurelist['error']['code'] . ' ' . $measurelist['error']['message']);
                 } elseif (empty($measurelist)) {
                     log::add('EcoNetatmo', 'info', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('pas de modification depuis', __FILE__) . ' ' . date('Y-m-d H:i:s', $beg_time) . ' (' . $beg_time . ')');
                 } else {
