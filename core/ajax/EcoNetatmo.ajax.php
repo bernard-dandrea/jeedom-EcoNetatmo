@@ -1,6 +1,6 @@
 <?php
 
-// Last Modified : 2026/08/05 10:38:01
+// Last Modified : 2026/08/20 05:58:17
 
 /* This file is part of Jeedom.
  *
@@ -37,16 +37,15 @@ try {
         ajax::success();
     }
 
+
     if (init('action') == 'counters_import') {
 
         $eqLogic = EcoNetatmo::byId(init('id'));
         if (!is_object($eqLogic)) {
             throw new \Exception(__('EcoNetatmo eqLogic non trouvé : ', __FILE__) . init('id'));
         }
-        $consumption_type = init('consumption_type');
-        $source_type = init('source_type');
-        log::add('EcoNetatmo', 'debug', 'counters_import - consumption_type: ' . $consumption_type);
-        log::add('EcoNetatmo', 'debug', 'counters_import - source_type: ' . $source_type);
+        $consumption_type = $eqLogic->getConfiguration('consumption_type');
+        $source_type = $eqLogic->getConfiguration('source_type');
         $EcoNetatmo  = $eqLogic->counters_import($consumption_type,$source_type);
         ajax::success($EcoNetatmo);
     }
