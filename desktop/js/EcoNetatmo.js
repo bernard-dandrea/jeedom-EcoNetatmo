@@ -186,6 +186,20 @@ document.querySelector('#bt_counters_import').addEventListener('click', function
                 })
                 return;
             }
+
+            var message = String(data.result || '');
+            var level = 'success';
+            if (message.startsWith('KO')) {
+                level = 'warning';
+            }
+            if (message.length >= 4) {
+                message = message.substring(3);
+            }
+            jeedomUtils.showAlert({
+                message: message,
+                level: level
+            })
+
             setTimeout(function () {
                 location.reload()
             }, 3000)

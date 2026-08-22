@@ -1,24 +1,13 @@
 <?php
 
-// Last Modified : 2026/08/14 09:23:19
+// Last Modified : 2026/08/22 22:44:50
 
-/* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+/*
+ * Copyright (C) 2026 Bernard Dandrea
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ * https://www.gnu.org/licenses/gpl-3.0.html
  */
 
-/* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 
@@ -191,6 +180,7 @@ class EcoNetatmo extends eqLogic
                 $this->create_counter($_source_type, 'sum_energy_elec', $consumption_type);
                 break;
         }
+        return 'OK ' . __('Opération effectuée', __FILE__);
     }
 
     private function create_counter($_name, $_type, $_consumption_type, $_collected = '1')
@@ -265,7 +255,7 @@ class EcoNetatmo extends eqLogic
                 );
 
                 if (isset($measurelist['error'])) {
-                    log::add('EcoNetatmo', $measurelist['error']['code']=='27' ? 'warning' : 'error', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('erreur Netatmo', __FILE__) . ' ' . $measurelist['error']['code'] . ' ' . $measurelist['error']['message']);
+                    log::add('EcoNetatmo', $measurelist['error']['code'] == '27' ? 'warning' : 'error', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('erreur Netatmo', __FILE__) . ' ' . $measurelist['error']['code'] . ' ' . $measurelist['error']['message']);
                 } elseif (empty($measurelist)) {
                     log::add('EcoNetatmo', 'info', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('pas de modification depuis', __FILE__) . ' ' . date('Y-m-d H:i:s', $beg_time) . ' (' . $beg_time . ')');
                 } else {
