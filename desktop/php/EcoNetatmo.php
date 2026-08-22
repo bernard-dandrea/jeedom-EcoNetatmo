@@ -1,6 +1,12 @@
 <?php
 
-// Last Modified : 2026/08/05 17:29:59
+// Last Modified : 2026/08/22 18:44:30
+
+/*
+ * Copyright (C) 2026 Bernard Dandrea
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ * https://www.gnu.org/licenses/gpl-3.0.html
+ */
 
 if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
@@ -93,11 +99,15 @@ $eqLogics = eqLogic::byType($plugin->getId());
     <!-- barre de gestion de l'équipement -->
     <div class="input-group pull-right" style="display:inline-flex;">
       <span class="input-group-btn">
-        <!-- Les balises <a></a> sont volontairement fermées à la ligne suivante pour éviter les espaces entre les boutons. Ne pas modifier -->
+        <!--
+        Ne pas ajouter de retour à la ligne ni d'espace entre les balises </a> et <a>.
+        Les boutons sont volontairement adjacents pour éviter un espace
+        visuel entre eux avec le rendu inline/inline-block de Bootstrap.
+        -->
+        <!-- Pas de duplication, il faut passer par la synchronisation      -->
         <a class="btn btn-sm btn-default eqLogicAction roundedLeft" data-action="configure"><i class="fas fa-cogs"></i><span class="hidden-xs"> {{Configuration avancée}}</span>
         </a><a class="btn btn-sm btn-success eqLogicAction" data-action="save"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
-        </a><a class="btn btn-sm btn-danger eqLogicAction roundedRight" data-action="remove"><i class="fas fa-minus-circle"></i> {{Supprimer}}
-        </a>
+        </a><a class="btn btn-sm btn-danger eqLogicAction roundedRight" data-action="remove"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
       </span>
     </div>
     <!-- Onglets -->
@@ -159,8 +169,8 @@ $eqLogics = eqLogic::byType($plugin->getId());
               </div>
               <div class="form-group">
                 <label class="col-sm-4 control-label"></label>
-                <div class="col-sm-4">
-                  <a class="btn btn-default" id="bt_counters_import"><i class="fa fa-refresh"> {{Importer les compteurs}}</i></a>
+                <div class="col-sm-8">
+                  <a class="btn btn-default" id="bt_counters_import"><i class="fa fa-refresh"></i> {{Importer les compteurs}}</a>
                 </div>
               </div>
               <div class="form-group">
@@ -170,7 +180,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-4 control-label" >{{Type de consommation}}</label>
+                <label class="col-sm-4 control-label">{{Type de consommation}}</label>
                 <div class="col-sm-6">
                   <span class="eqLogicAttr" id="consumption_type" data-l1key="configuration" data-l2key="consumption_type"></span>
                 </div>
@@ -182,7 +192,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                 </div>
               </div>
 
-              <div class=" form-group">
+              <div class="form-group">
                 <label class="col-sm-4 control-label">{{Icône}}</label>
                 <div class="col-sm-6">
                   <select id="sel_icon" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="icon">
@@ -215,12 +225,13 @@ $eqLogics = eqLogic::byType($plugin->getId());
                   </select>
                 </div>
               </div>
-           </fieldset>
+            </div>
+          </fieldset>
         </form>
       </div><!-- /.tabpanel #eqlogictab-->
 
       <!-- Onglet des commandes de l' équipement -->
-      <div role=" tabpanel" class="tab-pane" id="commandtab">
+      <div role="tabpanel" class="tab-pane" id="commandtab">
 
         <br><br>
         <div class="table-responsive">
