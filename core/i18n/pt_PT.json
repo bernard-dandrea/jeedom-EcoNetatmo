@@ -5,10 +5,11 @@
         "EcoNetatmo eqLogic non trouvé : ": "EcoNetatmo eqLogic não encontrado: "
     },
     "plugins\/EcoNetatmo\/core\/class\/EcoNetatmo.class.php": {
-        "Activation du cron de EcoNetatmo": "Ativação do cron do EcoNetatmo",
+        "Activation du cron de %1$s": "Ativação do cron de %1$s",
         "Création eqLogic": "Criação da eqLogic",
-        "Désactivation du cron de EcoNetatmo": "Desativação do cron do EcoNetatmo",
+        "Désactivation du cron de %1$s": "Desativação do cron de %1$s",
         "Lancement de cron": "Execução do cron",
+        "Opération effectuée": "Operação realizada",
         "commande déjà créée . type = ": "encomenda já criada. tipo = ",
         "dernière mise à jour": "última atualização",
         "début": "início",
