@@ -1,6 +1,6 @@
 <?php
 
-// Last Modified : 2026/10/04 18:28:41
+// Last Modified : 2026/11/20 18:56:55
 
 /*
  * Copyright (C) 2026 Bernard Dandrea
@@ -81,7 +81,7 @@ class EcoNetatmo extends eqLogic
     static function saveTokens($p_token)
     {
         foreach ($p_token as $key => $value) {
-            log::add(__CLASS__, 'debug', 'saveTokens ' . $key . ' -> ' . $value);
+            log::add(__CLASS__, 'debug', __FUNCTION__ . ' ' . $key . ' -> ' . $value);
             config::save($key, $value, 'EcoNetatmo');
         }
     }
@@ -91,7 +91,7 @@ class EcoNetatmo extends eqLogic
         // avec Netatmo, une fois que le token est expiré, on ne peut plus faire de refresh
         // (ce qui est normalement bien géré avec getAccessTokenFromRefreshToken)
         // aussi, on fait un refresh du token toutes les heures pour être sur qu'il est toujours valide
-        log::add(__CLASS__, 'info', 'Refresh token');
+        log::add(__CLASS__, 'info', __FUNCTION__ );
         // dans netatmoApi.class.php, remplacer le private par public devant la fonction getAccessTokenFromRefreshToken
         self::getClient()->getAccessTokenFromRefreshToken();
     }
@@ -269,7 +269,7 @@ class EcoNetatmo extends eqLogic
                         if (isset($measures['value']) && isset($measures['beg_time'])) {
                             $value = $measures['value'];
                             $beg_time = $measures['beg_time'];
-                            log::add(__CLASS__, 'debug', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('début', __FILE__) . ' ' . date('Y-m-d H:i:s', $beg_time)  . ' (' . $beg_time . ')' . ' ' . __('intervalle', __FILE__) . ' ' . $step_time . ' ' . __('values', __FILE__) . ' ' . self::FormatArrayForLog($measures['value']));
+                            log::add(__CLASS__, 'debug', $this->getLogicalId() . ' ' . $this->getName() . ' : ' . __('début', __FILE__) . ' ' . date('Y-m-d H:i:s', $beg_time)  . ' (' . $beg_time . ')' . ' ' . __('intervalle', __FILE__) . ' ' . $step_time . ' ' . __('valeurs', __FILE__) . ' ' . self::FormatArrayForLog($measures['value']));
                             $x = 0;
                             foreach ($measures['value'] as $value) {
                                 log::add(__CLASS__, 'info', $this->getLogicalId() . ' ' . $this->getName() . ' : ' .  $x . ' ' . __('début', __FILE__) . ' ' . date('Y-m-d H:i:s', $beg_time)  . ' (' . $beg_time . ')' . ' ' . __('valeur', __FILE__) . ' ' . $value[0]);
