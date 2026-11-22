@@ -1,7 +1,7 @@
 <?php
 
 
-// Last Modified : 2026/07/22 18:33:54
+// Last Modified : 2026/08/05 08:43:15
 
 /* This file is part of Jeedom.
 *
@@ -34,25 +34,25 @@ if (!isConnect()) {
     <div class="row">
 
       <div class="form-group">
-        <label class="col-sm-4 control-label" for="client_id"> {{Client ID}}</label>
+        <label class="col-sm-4 control-label" for="client_id"> Client ID</label>
         <div class="col-sm-4">
           <input type="text" class="configKey form-control" data-l1key="client_id" id="client_id" placeholder="" autocomplete="off">
         </div>
       </div>
       <div class="form-group">
-        <label class="col-sm-4  control-label" for="client_secret">{{Client secret}}</label>
+        <label class="col-sm-4  control-label" for="client_secret">Client secret</label>
         <div class="col-sm-4">
           <input type="password" class="configKey form-control" data-l1key="client_secret" id="client_secret" placeholder="" autocomplete="off">
         </div>
       </div>
       <div class="form-group">
-        <label class="col-sm-4 control-label" for="access_token">{{Access token}}</label>
+        <label class="col-sm-4 control-label" for="access_token">Access token</label>
         <div class="col-sm-4">
           <input type="text" class="configKey form-control" data-l1key="access_token" id="access_token" placeholder="" autocomplete="off">
         </div>
       </div>
       <div class="form-group">
-        <label class="col-sm-4 control-label" for="refresh_token">{{Refresh token}}</label>
+        <label class="col-sm-4 control-label" for="refresh_token">Refresh token</label>
         <div class="col-sm-4">
           <input type="text" class="configKey form-control" data-l1key="refresh_token" id="refresh_token" placeholder="" autocomplete="off">
         </div>
